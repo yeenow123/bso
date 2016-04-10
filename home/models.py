@@ -92,6 +92,20 @@ HomePage.content_panels = [
     StreamFieldPanel('body'),
 ]
 
+class BlogPage(Page):
+    body = StreamField(BlogStreamBlock())
+    date = models.DateField("Post date")
+
+    search_fields = Page.search_fields + (
+        index.SearchField('body'),
+    )
+
+BlogPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    FieldPanel('date'),
+    StreamFieldPanel('body'),
+]
+
 
 
 
